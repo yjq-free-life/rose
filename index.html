@@ -2,80 +2,61 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Canvas 绘制小绵羊</title>
+    <title>圣诞树</title>
 </head>
 <body>
-    <canvas id="sheepCanvas" width="300" height="300"></canvas>
-
+    <canvas id="christmasTreeCanvas" width="400" height="600" style="border:1px solid #d3d3d3;"></canvas>
     <script>
-        function drawSheep() {
-            const canvas = document.getElementById("sheepCanvas");
-            const ctx = canvas.getContext("2d");
+        // 获取canvas元素和绘图上下文
+        const canvas = document.getElementById("christmasTreeCanvas");
+        const ctx = canvas.getContext("2d");
 
-            // 绘制羊的身体（大圆）
-            ctx.fillStyle = "#FFFFFF";
+        // 绘制圣诞树
+        function drawTree() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = "green";
+            
+            // 树的三个三角形部分
+            for (let i = 0; i < 3; i++) {
+                ctx.beginPath();
+                ctx.moveTo(200, 100 + i * 100);
+                ctx.lineTo(100 + i * 20, 300 + i * 100);
+                ctx.lineTo(300 - i * 20, 300 + i * 100);
+                ctx.closePath();
+                ctx.fill();
+            }
+
+            // 树干
+            ctx.fillStyle = "saddlebrown";
+            ctx.fillRect(175, 500, 50, 80);
+
+            // 添加一些装饰球
+            for (let i = 0; i < 10; i++) {
+                ctx.beginPath();
+                const x = 150 + Math.random() * 100;
+                const y = 150 + Math.random() * 300;
+                ctx.arc(x, y, 8, 0, Math.PI * 2);
+                ctx.fillStyle = `hsl(${Math.random() * 360}, 70%, 50%)`;  // 随机颜色
+                ctx.fill();
+            }
+
+            // 星星
+            ctx.fillStyle = "yellow";
             ctx.beginPath();
-            ctx.arc(150, 150, 50, 0, Math.PI * 2, true); // 大圆
+            ctx.moveTo(200, 70);
+            for (let i = 0; i < 5; i++) {
+                ctx.lineTo(200 + 15 * Math.cos((18 + i * 72) * Math.PI / 180),
+                           70 + 15 * Math.sin((18 + i * 72) * Math.PI / 180));
+                ctx.lineTo(200 + 7 * Math.cos((54 + i * 72) * Math.PI / 180),
+                           70 + 7 * Math.sin((54 + i * 72) * Math.PI / 180));
+            }
+            ctx.closePath();
             ctx.fill();
-            ctx.closePath();
-
-            // 绘制羊的头部（小圆）
-            ctx.fillStyle = "#FFFFFF";
-            ctx.beginPath();
-            ctx.arc(190, 150, 30, 0, Math.PI * 2, true); // 小圆
-            ctx.fill();
-            ctx.closePath();
-
-            // 绘制羊的眼睛
-            ctx.fillStyle = "#000000";
-            ctx.beginPath();
-            ctx.arc(180, 140, 5, 0, Math.PI * 2, true); // 左眼
-            ctx.fill();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.arc(200, 140, 5, 0, Math.PI * 2, true); // 右眼
-            ctx.fill();
-            ctx.closePath();
-
-            // 绘制羊的嘴巴
-            ctx.beginPath();
-            ctx.arc(190, 160, 8, 0, Math.PI, false); // 半圆形嘴巴
-            ctx.stroke();
-            ctx.closePath();
-
-            // 绘制羊的腿
-            ctx.strokeStyle = "#000000";
-            ctx.lineWidth = 5;
-
-            ctx.beginPath();
-            ctx.moveTo(130, 200); // 左前腿
-            ctx.lineTo(130, 250);
-            ctx.stroke();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.moveTo(170, 200); // 右前腿
-            ctx.lineTo(170, 250);
-            ctx.stroke();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.moveTo(150, 200); // 左后腿
-            ctx.lineTo(150, 250);
-            ctx.stroke();
-            ctx.closePath();
-
-            ctx.beginPath();
-            ctx.moveTo(190, 200); // 右后腿
-            ctx.lineTo(190, 250);
-            ctx.stroke();
-            ctx.closePath();
         }
 
-        // 调用绘制函数
-        drawSheep();
+        // 调用函数绘制圣诞树
+        drawTree();
     </script>
 </body>
 </html>
+
