@@ -1,32 +1,81 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
-  <title>绘制玫瑰</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canvas 绘制小绵羊</title>
 </head>
 <body>
-  <canvas id="canvas" width="400" height="400"></canvas>
-  <script>
-    const canvas = document.getElementById('canvas');
-    const ctx = canvas.getContext('2d');
+    <canvas id="sheepCanvas" width="300" height="300"></canvas>
 
-    // 定义花瓣的坐标和半径
-    const petalX = 50;
-    const petalY = 150;
-    const petalRadius = 10;
+    <script>
+        function drawSheep() {
+            const canvas = document.getElementById("sheepCanvas");
+            const ctx = canvas.getContext("2d");
 
-    // 定义花瓣的角度范围
-    const angleRange = 2 * Math.PI;
+            // 绘制羊的身体（大圆）
+            ctx.fillStyle = "#FFFFFF";
+            ctx.beginPath();
+            ctx.arc(150, 150, 50, 0, Math.PI * 2, true); // 大圆
+            ctx.fill();
+            ctx.closePath();
 
-    // 绘制花瓣
-    for (let i = 0; i < 12; i++) {
-      const angle = Math.random() * angleRange;
-      const x = petalX + petalRadius * Math.cos(angle);
-      const y = petalY + petalRadius * Math.sin(angle);
-      ctx.beginPath();
-      ctx.arc(x, y, petalRadius, 0, Math.PI * 2);
-      ctx.stroke();
-    }
-  </script>
+            // 绘制羊的头部（小圆）
+            ctx.fillStyle = "#FFFFFF";
+            ctx.beginPath();
+            ctx.arc(190, 150, 30, 0, Math.PI * 2, true); // 小圆
+            ctx.fill();
+            ctx.closePath();
+
+            // 绘制羊的眼睛
+            ctx.fillStyle = "#000000";
+            ctx.beginPath();
+            ctx.arc(180, 140, 5, 0, Math.PI * 2, true); // 左眼
+            ctx.fill();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.arc(200, 140, 5, 0, Math.PI * 2, true); // 右眼
+            ctx.fill();
+            ctx.closePath();
+
+            // 绘制羊的嘴巴
+            ctx.beginPath();
+            ctx.arc(190, 160, 8, 0, Math.PI, false); // 半圆形嘴巴
+            ctx.stroke();
+            ctx.closePath();
+
+            // 绘制羊的腿
+            ctx.strokeStyle = "#000000";
+            ctx.lineWidth = 5;
+
+            ctx.beginPath();
+            ctx.moveTo(130, 200); // 左前腿
+            ctx.lineTo(130, 250);
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.moveTo(170, 200); // 右前腿
+            ctx.lineTo(170, 250);
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.moveTo(150, 200); // 左后腿
+            ctx.lineTo(150, 250);
+            ctx.stroke();
+            ctx.closePath();
+
+            ctx.beginPath();
+            ctx.moveTo(190, 200); // 右后腿
+            ctx.lineTo(190, 250);
+            ctx.stroke();
+            ctx.closePath();
+        }
+
+        // 调用绘制函数
+        drawSheep();
+    </script>
 </body>
 </html>
