@@ -1,32 +1,32 @@
 
-<！doctype html>
-<超文本标记语言>
-<头>
-  <标题>绘制玫瑰</标题>
-</头>
-<身体>
-  <帆布身份标识="画布" 宽度="400" 高度="400"></帆布>
-  <脚本>
-    Const 帆布=文档。getElementById('画布');
-    Const CTX=画布。getContext('2d');
+<!DOCTYPE html>
+<html>
+<head>
+  <title>绘制玫瑰</title>
+</head>
+<body>
+  <canvas id="canvas" width="400" height="400"></canvas>
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
 
     // 定义花瓣的坐标和半径
-    Const petalX=50;
-    Const petalY=150;
-    Const 花瓣半径=10;
+    const petalX = 50;
+    const petalY = 150;
+    const petalRadius = 10;
 
     // 定义花瓣的角度范围
-    Const angleRange=2*数学。Pi;
+    const angleRange = 2 * Math.PI;
 
     // 绘制花瓣
-    为 (让 我=0；i<12；i++) {
-      Const 角=数学。随机()*angleRange；
-      Const x=petalX+petalRadius*数学Cos(角);
-      Const y=petalY+petalRadius*数学罪恶(角);
-CTX.beginPath();
-CTX.弧(X，y，花瓣半径，0，数学。Pi*2);
-CTX.中风();
+    for (let i = 0; i < 12; i++) {
+      const angle = Math.random() * angleRange;
+      const x = petalX + petalRadius * Math.cos(angle);
+      const y = petalY + petalRadius * Math.sin(angle);
+      ctx.beginPath();
+      ctx.arc(x, y, petalRadius, 0, Math.PI * 2);
+      ctx.stroke();
     }
-  </脚本>
-</身体>
-</超文本标记语言>
+  </script>
+</body>
+</html>
